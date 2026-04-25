@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
 import Account from "./account";
+import { RxHeight } from "react-icons/rx";
 const Login=()=>{
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
@@ -11,18 +12,46 @@ function reset(e){
    setPassword("");
 
 }
+const display={
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    height:"100vh",
+    background:"#111827",
+    border:"1px solid white"
+
+}
+const form={
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+   flexDirection:"column",
+   gap:"20px"
+
+}
 
     return(
-        <div>
-            <form onSubmit={reset}>
-                
-            <input autoComplete="new-email" value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Enter your Email"></input>
-                        <input  autoComplete="new-password" value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Enter your Password"></input>
+       
+            <div   style={display}>
+            <form    onSubmit={reset}>
+                <div style={form}>
+                <input  required style={{width:'20rem',height:"40px",borderRadius:"10px",padding:'5px',outline:'none',background:''}} autoComplete="new-email" value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Enter your Email"></input>
+            
+                <input required minLength='8' style={{width:'20rem',height:"40px",borderRadius:"10px",padding:'5px',outline:'none'}} autoComplete="new-password" value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Enter your Password"></input>
 
-        <button  >Sign in </button>
-        <p style={{color:'white'}}>Did not Have an account?<Link style={{ color:"red"}}to='/account'> Sign Up</Link></p>
-        </form>
+        <button style={{background: "#ef4444",
+color: "white",
+width: "100%",
+height:"40px",
+borderRadius: "8px",
+border: "none",
+cursor: "pointer"}}  >Sign in </button>
+     
+        <p style={{color:'white'}}>Did not have an account?<Link style={{ color:"red"}}to='/account'> Sign Up</Link></p>
         </div>
+        </form>
+           </div>
+    
 
     )
 }

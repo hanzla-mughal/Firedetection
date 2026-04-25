@@ -11,7 +11,7 @@ const Dashboard = () => {
     
       <div style={{display:'flex',justifyContent:'center',gap:"15px"}}>
       <button style={{background:"transparent",border:'none',cursor:"pointer"}}><MdNotificationsNone size={30} color="white"></MdNotificationsNone></button> 
-       <Link to="login"> <button style={{background:"transparent",border:'none',cursor:"pointer",color:'white',fontSize:'1rem'}}>
+       <Link to="login"> <button style={{background:"red",border:'none',cursor:"pointer",color:'white',fontSize:'0.9rem',padding:"8px",borderRadius:"8px"}}>
           
           Login</button> 
           </Link>

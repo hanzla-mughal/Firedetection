@@ -1,13 +1,30 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Account from "./account";
 import { RxHeight } from "react-icons/rx";
+import app from "./firebase";
+import { getAuth,signInWithEmailAndPassword} from "firebase/auth";
+
 const Login=()=>{
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
+const auth=getAuth(app);
+const navigate=useNavigate();
+
 
 function reset(e){
  e.preventDefault();
+ signInWithEmailAndPassword(auth,email,password)
+ .then((userCredential)=>{
+    const user=userCredential.user;
+    
+navigate('/');
+
+ })
+ .catch((error) => {
+        alert(error.message);
+    })
+
    setEmail("");
    setPassword("");
 

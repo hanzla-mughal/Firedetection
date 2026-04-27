@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Account from "./account";
 import { RxHeight } from "react-icons/rx";
 import app from "./firebase";
-import { getAuth,signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth,signInWithEmailAndPassword,onAuthStateChanged} from "firebase/auth";
 
 const Login=()=>{
 const [email,setEmail]=useState("");
@@ -29,6 +29,15 @@ navigate('/');
    setPassword("");
 
 }
+useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setTimeout(()=>{
+                navigate('/');
+            })
+        }
+    })
+}, 2000)
 const display={
     display:"flex",
     justifyContent:"center",

@@ -4,6 +4,7 @@ import Dashboard from "./dashboard";
 import SideBar from "./SideBar";
 import Login from "./login";
 import Account from "./account";
+import Profile from "./profile";
 const App=()=>{
     return(
         <div>
@@ -14,6 +15,7 @@ const App=()=>{
         
             
             <Route path="/account" element={<Account/>}/>
+            <Route path="/profile" element={<Profile/>}/>
             
            
             

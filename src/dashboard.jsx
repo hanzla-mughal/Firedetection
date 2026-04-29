@@ -2,7 +2,14 @@ import {MdNotificationsNone} from "react-icons/md";
 import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Login from "./login";
+import app from "./firebase";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
+  const auth=getAuth(app);
+  const user=auth.currentUser;
+  const navigate=useNavigate();
+
   return (
     <div style={{background:" #111827"}} >
 
@@ -11,10 +18,12 @@ const Dashboard = () => {
     
       <div style={{display:'flex',justifyContent:'center',gap:"15px"}}>
       <button style={{background:"transparent",border:'none',cursor:"pointer"}}><MdNotificationsNone size={30} color="white"></MdNotificationsNone></button> 
-       <Link to="login"> <button style={{background:"red",border:'none',cursor:"pointer",color:'white',fontSize:'0.9rem',padding:"8px",borderRadius:"8px"}}>
+        {user ? (
+    <img src={user.photoURL} width="40" height="40" style={{borderRadius:"50%", cursor:"pointer"}} onClick={()=>navigate('/profile')}/>
+) : (
+    <button onClick={()=>navigate('/login')}>Login</button>
+)}
           
-          Login</button> 
-          </Link>
         </div> 
       </div>
       

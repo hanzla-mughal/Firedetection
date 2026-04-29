@@ -5,6 +5,7 @@ import SideBar from "./SideBar";
 import Login from "./login";
 import Account from "./account";
 import Profile from "./profile";
+import WebcamCapture from "./detection";
 const App=()=>{
     return(
         <div>
@@ -16,6 +17,7 @@ const App=()=>{
             
             <Route path="/account" element={<Account/>}/>
             <Route path="/profile" element={<Profile/>}/>
+            <Route path='/detection' element={<WebcamCapture/>}/>
             
            
             

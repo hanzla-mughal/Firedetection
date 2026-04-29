@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Account from "./account";
 import { RxHeight } from "react-icons/rx";
 import app from "./firebase";
-import { getAuth,signInWithEmailAndPassword,onAuthStateChanged} from "firebase/auth";
+import { getAuth,signInWithEmailAndPassword,onAuthStateChanged, updateProfile} from "firebase/auth";
 
 const Login=()=>{
 const [email,setEmail]=useState("");
@@ -34,10 +34,15 @@ useEffect(() => {
         if (user) {
             setTimeout(()=>{
                 navigate('/');
-            })
+                return  updateProfile(user,
+                    {
+                        photoURL:"/logo.png"
+                    }
+                )
+            } )
         }
     })
-}, 2000)
+}, [])
 const display={
     display:"flex",
     justifyContent:"center",
@@ -71,7 +76,7 @@ width: "100%",
 height:"40px",
 borderRadius: "8px",
 border: "none",
-cursor: "pointer"}}  >Sign in </button>
+cursor: "pointer"}} >Sign in </button>
      
         <p style={{color:'white'}}>Did not have an account?<Link style={{ color:"red"}}to='/account'> Sign Up</Link></p>
         </div>

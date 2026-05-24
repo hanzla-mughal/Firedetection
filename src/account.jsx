@@ -13,21 +13,7 @@ const Account = () => {
   const [error, setError] = useState("");
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
-  /*function changeEmail(e) {
-    setEmail(e.target.value);
-    setPassword(e.target.value);
-    setRepeat(e.target.value);
-  }
-  function Password(e) {
-    
-    setPassword(e.target.value);
-    
-  }
-  function Repeat(e) {
-    
-    setRepeat(e.target.value);
-    
-  }*/
+  
   const auth = getAuth(app);
 
 

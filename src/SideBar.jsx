@@ -64,7 +64,7 @@ textAlign:'center'
                  <NavLink to="/"style={navlinkstyles} ><GoHome  size={20}/>Dashboard</NavLink>  
                 <NavLink to='/detection' style={navlinkstyles}><MdOutlineCameraAlt size={20}/>Detection</NavLink>
                 <NavLink to="/history" style={navlinkstyles}><MdHistory size={20}/>History</NavLink>
-                <NavLink to="/safety" style={navlinkstyles}><MdNotificationsNone  size={20}/>Safety InstRuction</NavLink>
+                <NavLink to="/safety" style={navlinkstyles}><MdNotificationsNone  size={20}/>Safety Instructions</NavLink>
                 <NavLink to="/profile" style={navlinkstyles}><CgProfile size={20}/>Profile</NavLink>
                 <NavLink to="/settings" style={navlinkstyles}><IoSettingsOutline size={20}/>Settings</NavLink>
 

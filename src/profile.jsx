@@ -21,7 +21,7 @@ const Profile = () => {
     return (
         <div style={{color:"white", padding:"20px"}}>
             <h1>Profile</h1>
-            <p>Photo:{user?.photoURL && <img src={user?.photoURL} width="80" height="80"/>}</p>
+           
              <p>Email: {user?.email}</p>
             <p>Name: {user?.displayName}</p>
             <p>UID: {user?.uid}</p>

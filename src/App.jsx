@@ -6,6 +6,8 @@ import Login from "./login";
 import Account from "./account";
 import Profile from "./profile";
 import WebcamCapture from "./detection";
+import History from "./history";
+import SafetyInstructions from "./SafeteyInstruction";
 const App=()=>{
     return(
         <div>
@@ -18,9 +20,9 @@ const App=()=>{
             <Route path="/account" element={<Account/>}/>
             <Route path="/profile" element={<Profile/>}/>
             <Route path='/detection' element={<WebcamCapture/>}/>
-            
-           
-            
+            <Route path="/history" element={<History/>}/>
+                        <Route path="/safety" element={<SafetyInstructions/>}/>
+
             
            
 

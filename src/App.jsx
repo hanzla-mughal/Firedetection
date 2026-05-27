@@ -7,7 +7,7 @@ import Account from "./account";
 import Profile from "./profile";
 import WebcamCapture from "./detection";
 import History from "./history";
-import SafetyInstructions from "./SafeteyInstruction";
+import SafetyInstructions from "./SafetyInstruction";
 const App=()=>{
     return(
         <div>

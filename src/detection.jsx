@@ -17,14 +17,14 @@ const WebcamCapture = () => {
 
    
 
-  const detectFire =  useCallback(async (imageSrc) => {
+  const detectFire =  useCallback(async () => {
      let fireFound = false;
 let smokeFound = false;
     try {
-          // const imageSrc = webcamRef.current?.getScreenshot();
+           const imageSrc = webcamRef.current?.getScreenshot();
 
 
-      if (!imageSrc) return;
+     if (!imageSrc) return;
 
       const base64Image = imageSrc.split(",")[1];
 
@@ -89,11 +89,11 @@ if(data.predictions.length > 0) {
     }
   },[]);
   //capture
-   const capture = useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImg(imageSrc); 
-    detectFire(imageSrc);
-  }, [detectFire]);
+  // const capture = useCallback(() => {
+   // const imageSrc = webcamRef.current.getScreenshot();
+   // setImg(imageSrc); 
+   // detectFire(imageSrc);
+  //}, [detectFire]);
   //retake
   const retake=()=>{
     setImg(null);
@@ -103,13 +103,12 @@ if(data.predictions.length > 0) {
       audioRef.current.currentTime = 0;
   }
 
-//   useEffect(() => {
-// const interval = setInterval(() => {
-//  detectFire();
-// }, 5000);
-
-// return () => clearInterval(interval);
-//  }, [detectFire]);
+      useEffect(() => {
+    const interval = setInterval(() => {
+     detectFire();
+    }, 20000);
+    return () => clearInterval(interval);
+      }, [detectFire]);
 const style={
    background:"#ef4444",
         color:"white",
@@ -135,7 +134,6 @@ const style={
 <div style={{display:"flex",justifyContent:"flexStart",alignItems:"center",flexDirection:"column",gap:"10px"}} >    
      <div style={{display:"flex",justifyContent:"center",alignItems:"center",gap:"2rem"}}>
       <button style={style} onClick={retake}>Retake</button>
-      <button  style={style} onClick={capture}>Capture</button>
       </div>
      <p style={{color:"white"}}>{status}</p>
        </div>  

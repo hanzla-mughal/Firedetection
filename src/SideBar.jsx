@@ -3,13 +3,20 @@ import { GoHome } from "react-icons/go";
 import { CgProfile } from "react-icons/cg";
 
 import { IoSettingsOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 
+import app from "./firebase";
 
 import { MdOutlineCameraAlt,MdHistory,MdNotificationsNone } from "react-icons/md";
 import { CiLineHeight } from "react-icons/ci";
 
 
 const SideBar=()=>{
+      const auth = getAuth(app);
+    const user = auth.currentUser;
+         const navigate = useNavigate();
+
     const navlinkstyles=({isActive})=>({
     display: 'flex',
     alignItems:'center',
@@ -41,6 +48,17 @@ alignItems:'center',
 lineHeight:'1.2',
 textAlign:'center'
   }
+  const handleSignOut=()=>{
+
+    signOut(auth).then(()=>
+
+    {
+       navigate('/login')
+    })
+   .catch((error)=>
+         alert(error.message)
+)
+ }
  
 
     return(
@@ -66,19 +84,22 @@ textAlign:'center'
                 <NavLink to="/history" style={navlinkstyles}><MdHistory size={20}/>History</NavLink>
                 <NavLink to="/safety" style={navlinkstyles}><MdNotificationsNone  size={20}/>Safety Instructions</NavLink>
                 <NavLink to="/profile" style={navlinkstyles}><CgProfile size={20}/>Profile</NavLink>
-                <NavLink to="/settings" style={navlinkstyles}><IoSettingsOutline size={20}/>Settings</NavLink>
-
+                  <button style={{padding:"8px",fontSize:"1rem",    borderRadius: '5px',}} onClick={handleSignOut} >Sign out</button>     
             </nav>
+             
             <div style={{backgroundColor: '#1a1f2e',border:'1.2px solid red',padding:'10px',borderRadius:'10px', marginTop:"100px",display:'flex',flexDirection:"column",justifyContent:"center",alignItems:'center'}}>
                <div style={{display:"flex",alignItems: 'center', gap: '5px',lineHeight:4}}>
                 <img src="/logo.png" style={{ width: '40px', height: '40px', objectFit: 'contain' }}></img>
                 <p style={{color:'red',fontFamily:'Poppins',fontWeight:'500'}}>Emergency</p>
                 </div>
+                
             <div style={{lineHeight:1.2,color:'white',textAlign:'center'}}>
                 <p>If you see fire</p>
                 <p>Call <span style={{fontSize:'1.5rem',color:'red',fontFamily: 'Orbitron'}}>101</span></p>
                 </div>
             </div>
+                       
+
         </div>
     )
 }

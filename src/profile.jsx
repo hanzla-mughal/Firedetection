@@ -5,18 +5,7 @@ import app from "./firebase";
 const Profile = () => {
     const auth = getAuth(app);
     const user = auth.currentUser;
-    const navigate = useNavigate();
- const handleSignOut=()=>{
-
-    signOut(auth).then(()=>
-
-    {
-       navigate('/login')
-    })
-   .catch((error)=>
-         alert(error.message)
-)
- }
+ 
    
     return (
         <div style={{color:"white", padding:"20px"}}>
@@ -29,7 +18,6 @@ const Profile = () => {
             <p>Last Login:{user?.metadata.lastSignInTime}</p>
             
 
-            <button onClick={handleSignOut}>Sign out</button>
         </div>
     )
 }

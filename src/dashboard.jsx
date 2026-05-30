@@ -42,19 +42,19 @@ const Dashboard = () => {
       
       {/* 2. Top Header / Navbar Line */}
       <div style={{
-        height: '60px',
+        height: '50px',
         width: '100%',
         borderBottom: '1.5px solid #2d3748',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: "center",
-        padding: "0 20px",
+        padding: " 15px",
         boxSizing: "border-box"
       }}>
         {/* Left Side Elements */}
-        <div style={{ display: 'flex', alignItems: "center", gap: '15px' }}>
+        <div style={{ display: 'flex', alignItems: "center", gap: '10px' }}>
           <IoMdMenu size={24} color="white" style={{ cursor: "pointer" }} />
-          <h2 style={{ fontSize: "1.2rem", margin: 0, fontWeight: "600" }}>Dashboard</h2>
+          <h2 style={{ fontSize: "1rem", margin: 0, fontWeight: "bold" }}>Dashboard</h2>
         </div>
     
         {/* Right Side Elements */}
@@ -65,7 +65,7 @@ const Dashboard = () => {
           
           {user ? (
             <img 
-              src={user.photoURL || "https://via.placeholder.com/40"} 
+              src={user.photoURL } 
               width="40" 
               height="40" 
               style={{ borderRadius: "50%", cursor: "pointer", objectFit: "cover" }} 
@@ -84,47 +84,25 @@ const Dashboard = () => {
       </div>
       
       {/* 3. Cards Section Layout (Navbar se alag, neechay) */}
-      <div style={{ display: "flex", gap: "20px", padding: "25px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: "15px", padding: "20px", flexWrap: "wrap" }}>
         
-        <div style={{ display: "flex", gap: "20px", padding: "20px 0" }}>
-    
-    {/* 1. Total Alerts Card */}
-    <div style={{ 
-        background: "#1e293b", 
-        padding: "20px", 
-        borderRadius: "12px", 
-        border: "1px solid #334155", 
-        width: "220px" 
-    }}>
-        <p style={{ color: "#94a3b8", margin: "0 0 5px 0", fontSize: "0.9rem" }}>Total Alerts</p>
-        <p style={{ color: "#ef4444", fontSize: "2.2rem", margin: "0 0 5px 0", fontWeight: "bold" }}>{total}</p>
-    </div>
+        {/* Card 1: Total Alerts */}
+        <div style={{ background: "#1f2937", padding: "20px", borderRadius: "12px", border: "1px solid #374151", width: "200px" }}>
+          <p style={{ color: "#9ca3af", margin: "0 0 10px 0", fontSize: "0.9rem" }}>Total Alerts</p>
+          <p style={{ color: "#3b82f6", fontSize: "2rem", margin: 0, fontWeight: "bold" }}>{total}</p>
+        </div>
 
-    {/* 2. Fire Detected Card */}
-    <div style={{ 
-        background: "#1e293b", 
-        padding: "20px", 
-        borderRadius: "12px", 
-        border: "1px solid #334155", 
-        width: "220px" 
-    }}>
-        <p style={{ color: "#94a3b8", margin: "0 0 5px 0", fontSize: "0.9rem" }}>Fire Detected</p>
-        <p style={{ color: "#ef4444", fontSize: "2.2rem", margin: "0 0 5px 0", fontWeight: "bold" }}>{fire}</p>
-    </div>
+        {/* Card 2: Fire Detected (Danger Red) */}
+        <div style={{ background: "#1f2937", padding: "20px", borderRadius: "12px", border: "1px solid #374151", width: "200px" }}>
+          <p style={{ color: "#9ca3af", margin: "0 0 10px 0", fontSize: "0.9rem" }}>Fire Detected</p>
+          <p style={{ color: "#ef4444", fontSize: "2rem", margin: 0, fontWeight: "bold" }}>{fire}</p>
+        </div>
 
-    {/* 3. Safe Scans Card */}
-    <div style={{ 
-        background: "#1e293b", 
-        padding: "20px", 
-        borderRadius: "12px", 
-        border: "1px solid #334155", 
-        width: "220px" 
-    }}>
-        <p style={{ color: "#94a3b8", margin: "0 0 5px 0", fontSize: "0.9rem" }}>Safe Scans</p>
-        <p style={{ color: "#10b981", fontSize: "2.2rem", margin: "0 0 5px 0", fontWeight: "bold" }}>{safe}</p>
-    </div>
-
-</div>
+        {/* Card 3: Safe Scans (Success Green) */}
+        <div style={{ background: "#1f2937", padding: "20px", borderRadius: "12px", border: "1px solid #374151", width: "200px" }}>
+          <p style={{ color: "#9ca3af", margin: "0 0 10px 0", fontSize: "0.9rem" }}>Safe Scans</p>
+          <p style={{ color: "#10b981", fontSize: "2rem", margin: 0, fontWeight: "bold" }}>{safe}</p>
+        </div>
 
       </div>
 

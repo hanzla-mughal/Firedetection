@@ -11,6 +11,7 @@ const WebcamCapture = () => {
   const [status, setstatus] = useState("Loading...");
   const [img, setImg] = useState(null);
   const auth = getAuth(app);
+  const lastSafeRef = useRef(0);
   const user = auth.currentUser;
   const detectFire = useCallback(async () => {
     let fireFound = false;
@@ -63,12 +64,16 @@ const WebcamCapture = () => {
         });
       }
       else {
+         const now = Date.now();
+          
+    if((now - lastSafeRef.current > 60000)) {
+      lastSafeRef.current = now;
     await addDoc(collection(db, "alerts"), {
-        timeStamp: new Date(),
-        id: user?.uid || "anonymous",
-        status: "safe"
+         timeStamp: new Date(),
+            id: user?.uid || "anonymous",
+            status: "safe"
     });
-}
+}}
     } catch (err) {
       console.error(err);
     }
@@ -89,7 +94,7 @@ const WebcamCapture = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       detectFire();
-    }, 5000);
+    }, 8000);
     return () => clearInterval(interval);
   }, [detectFire]);
   const style = {

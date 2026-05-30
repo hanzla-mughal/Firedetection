@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-
+import { FaRunning } from "react-icons/fa";
+import { IoCall } from "react-icons/io5";
+import { FaStairs } from "react-icons/fa6";
+import { ShieldCheck } from 'lucide-react';
 const Dashboard = () => {
   const auth = getAuth(app);
   const user = auth.currentUser;
@@ -17,7 +20,6 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "alerts"));
-        console.log("Total docs:", querySnapshot.docs.length);
 
         const data = querySnapshot.docs.map(doc => ({
           id: doc.id,
@@ -37,10 +39,9 @@ const Dashboard = () => {
   const safe = alerts.filter(item => item.status?.toLowerCase() === "safe").length;
 
   return (
-    // 1. Full Page Dark Background Wrapper
+   
     <div style={{ background: "#111827", minHeight: "100vh", color: "white", fontFamily: "sans-serif" }}>
       
-      {/* 2. Top Header / Navbar Line */}
       <div style={{
         height: '50px',
         width: '100%',
@@ -51,7 +52,6 @@ const Dashboard = () => {
         padding: " 15px",
         boxSizing: "border-box"
       }}>
-        {/* Left Side Elements */}
         <div style={{ display: 'flex', alignItems: "center", gap: '10px' }}>
           <IoMdMenu size={24} color="white" style={{ cursor: "pointer" }} />
           <h2 style={{ fontSize: "1rem", margin: 0, fontWeight: "bold" }}>Dashboard</h2>
@@ -75,7 +75,7 @@ const Dashboard = () => {
           ) : (
             <button 
               onClick={() => navigate('/login')}
-              style={{ background: "#3b82f6", color: "white", border: "none", padding: "8px 16px", borderRadius: "6px", cursor: "pointer" }}
+              style={{ background: "#D93030", color: "white", border: "none", padding: "8px 16px", borderRadius: "6px", cursor: "pointer" }}
             >
               Login
             </button>
@@ -105,7 +105,65 @@ const Dashboard = () => {
         </div>
 
       </div>
-
+      {/* Recents Alerts */}
+      <div style={{background:"#1f2937", padding:"20px", borderRadius:"12px", border:"1px solid #374151"}}>
+    <div style={{display:"flex",justifyContent:"space-between"}}>
+    <h2 style={{color:"white"}}>Recent Alerts</h2>
+    <button onClick={() => navigate('/history')}
+    style={{background: "transparent", border: 'none', cursor: "pointer",color:"#D93030"}}>View all</button>
+    </div>
+    {alerts.slice(0, 3).map((alert,index) => (
+        <div key={index} style={{borderBottom:"1px solid #374151", padding:"10px"}}>
+            <p style={{color:"white"}}>{alert.status}</p>
+            <p style={{color:"#9ca3af"}}>{alert.timeStamp?.toDate().toLocaleString()}</p>
+        </div>
+    ))}
+</div>
+{/* System Status*/}
+<div style={{display:"flex",gap:"10px"}}>
+<div style={{background:"#1f2937", padding:"20px", borderRadius:"12px", border:"1px solid #374151", marginTop:"20px"}}>
+   
+    <h2 style={{color:"white"}}>System Status</h2>
+    <div style={{display:"flex",gap:"15px"}}>
+      <ShieldCheck size={60} color="#22c55e" style={{marginTop:"10px"}}/>
+      <div style={{display:"flex",flexDirection:"column",gap:"6px"}}>
+    <p style={{color:"#22c55e",flex:"1rem",marginTop:"10px"}}> All Systems Operational</p>
+    <p>Your system is working properly
+and monitoring is active.</p>
+</div>
+</div>
+    <div style={{display:"flex", gap:"20px", marginTop:"10px"}}>
+        <p style={{color:"white" }}>Camera: <span style={{color:"#22c55e"}}>Online</span></p>
+        <p style={{color:"white"}}>AI Model: <span style={{color:"#22c55e"}}>Active</span></p>
+        <p style={{color:"white"}}>Notifications: <span style={{color:"#22c55e"}}>Enabled</span></p>
+    </div>
+</div>
+{/*Safety Instruction*/}
+<div style={{background:"#1f2937", padding:"20px", borderRadius:"12px", border:"1px solid #374151", marginTop:"20px"}}>
+    <div style={{display:"flex",justifyContent:"space-between"}}>
+    <h2 style={{color:"white"}}>Safety Instructions</h2>
+     <button onClick={() => navigate('/safety')}
+    style={{background: "transparent", border: 'none', cursor: "pointer",color:"#D93030"}}>View all</button>
+   </div>
+    <div style={{display:"flex", gap:"20px", marginTop:"10px"}}>
+        <div style={{background:"#111827", padding:"15px", borderRadius:"10px", width:"150px", textAlign:"center"}}>
+            <p style={{fontSize:"2rem"}}>< FaRunning   /></p>
+            <p style={{color:"white", fontWeight:"bold"}}>Stay Calm</p>
+            <p style={{color:"#9ca3af", fontSize:"0.8rem"}}>Don't panic, take deep breath</p>
+        </div>
+        <div style={{background:"#111827", padding:"15px", borderRadius:"10px", width:"150px", textAlign:"center"}}>
+            <p style={{fontSize:"2rem"}}><FaStairs  /></p>
+            <p style={{color:"white", fontWeight:"bold"}}>Evacuate</p>
+            <p style={{color:"#9ca3af", fontSize:"0.8rem"}}>Use stairs, not elevator</p>
+        </div>
+        <div style={{background:"#111827", padding:"15px", borderRadius:"10px", width:"150px", textAlign:"center"}}>
+            <p style={{fontSize:"2rem"}}><IoCall /></p>
+            <p style={{color:"white", fontWeight:"bold"}}>Call Emergency</p>
+            <p style={{color:"#9ca3af", fontSize:"0.8rem"}}>Call 101 immediately</p>
+        </div>
+    </div>
+</div>
+</div>
     </div>
   );
 };

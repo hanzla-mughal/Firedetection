@@ -6,7 +6,7 @@ const History = () => {
     const [alerts, setAlerts] = useState([]);
     useEffect(() => {
         const fetchAlerts = async () => {
-            const q = query(collection(db, "alerts"), orderBy("timeStamp", "desc"));
+         const q = query(collection(db, "alerts"), orderBy("timeStamp", "desc"));
             const querySnapshot = await getDocs(q);
             const data = querySnapshot.docs.map(doc => ({
                 id: doc.id,

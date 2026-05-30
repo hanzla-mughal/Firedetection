@@ -4,7 +4,6 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 const History = () => {
     const [alerts, setAlerts] = useState([]);
-
     useEffect(() => {
         const fetchAlerts = async () => {
             const q = query(collection(db, "alerts"), orderBy("timeStamp", "desc"));
@@ -19,13 +18,13 @@ const History = () => {
     }, []);
 
     return (
-        <div style={{color:"white", padding:"20px"}}>
+        <div style={{ color: "white", padding: "20px" }}>
             <h1>Alert History</h1>
-            {alerts.map((alert) => (
-                <div key={alert.id}>
+            {alerts.map((alert, index) => (
+                <div key={index}>
                     <p>Status: {alert.status}</p>
                     <p>Time: {alert.timeStamp?.toDate().toLocaleString()}</p>
-                    <hr/>
+                    <hr />
                 </div>
             ))}
         </div>

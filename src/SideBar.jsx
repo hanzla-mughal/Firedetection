@@ -84,7 +84,7 @@ textAlign:'center'
                 <NavLink to="/history" style={navlinkstyles}><MdHistory size={20}/>History</NavLink>
                 <NavLink to="/safety" style={navlinkstyles}><MdNotificationsNone  size={20}/>Safety Instructions</NavLink>
                 <NavLink to="/profile" style={navlinkstyles}><CgProfile size={20}/>Profile</NavLink>
-                  <button style={{padding:"5px",fontSize:"1rem",textAlign:"left"  ,  borderRadius: '5px',}} onClick={handleSignOut} >Sign out</button>     
+                  <button style={{padding:"5px",fontSize:"1rem",textAlign:"left"  ,  borderRadius: '5px'}} onClick={handleSignOut} >Sign out</button>     
             </nav>
              
             <div style={{backgroundColor: '#1a1f2e',border:'1.2px solid red',padding:'10px',borderRadius:'10px', marginTop:"100px",display:'flex',flexDirection:"column",justifyContent:"center",alignItems:'center'}}>

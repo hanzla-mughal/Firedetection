@@ -114,9 +114,13 @@ const WebcamCapture = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        background: "#111827",
+minHeight: "100vh"
+
+
       }}
     >
-      <h1>Fire Detection</h1>
+      <h1 style={{color: "white",marginBottom: "20px"}}>Fire Detection</h1>
       <Webcam
         audio={false}
         ref={webcamRef}
@@ -128,6 +132,8 @@ const WebcamCapture = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          border: "2px solid #ef4444",
+borderRadius: "12px"
         }}
       />
       <audio ref={audioRef} src="alarm.mp3" loop preload="auto"></audio>
@@ -153,8 +159,8 @@ const WebcamCapture = () => {
             Retake
           </button>
         </div>
-        <p style={{ color: "white" }}>{status}</p>
-      </div>
+<p style={{ color: "white", fontSize: "1.1rem", marginTop: "10px", fontWeight: "600" }}>
+          Current Status: {status} </p>      </div>
     </div>
   );
 };

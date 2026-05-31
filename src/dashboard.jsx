@@ -84,7 +84,7 @@ const Dashboard = () => {
       </div>
       
       {/* 3. Cards Section Layout (Navbar se alag, neechay) */}
-      <div style={{ display: "flex", gap: "15px", padding: "20px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: "15px", padding: "20px", flexWrap: "wrap",justifyContent:"space-evenly" }}>
         
         {/* Card 1: Total Alerts */}
         <div style={{ background: "#1f2937", padding: "20px", borderRadius: "12px", border: "1px solid #374151", width: "200px" }}>
